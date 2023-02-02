@@ -1,0 +1,38 @@
+{% extends 'turf_manager_home.html' %}
+
+{% block turf %}
+<!-- add turf Start -->
+<style>
+    input, select{
+        border: .5px solid gray !important;
+        width: 80%;
+        padding: 6px;
+    }
+</style>
+<div class="container-fluid pt-5">
+    <div class="d-flex flex-column text-center mb-5 pt-5">
+        <h4 class="text-secondary mb-3"></h4>
+        <h3 class="display-4 m-0"> Add<span class="text-primary">Turf</span></h3>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 mb-5">
+            <div class="contact-form">
+                <div id="success"></div>
+                <form method = 'POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="control-group">
+                        
+                        {% for field in form  %}
+
+                        {{field.label}}: <br>
+                        {{field}} <br><br>
+                            
+                        {% endfor %}
+                            
+                    <div>
+                        <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Add Turf</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+{% endblock %}

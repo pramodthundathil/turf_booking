@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    ul{
+        list-style: none;
+    }
+</style>
+
+<div class="container-fluid pt-5">
+    <div class="d-flex flex-column text-center mb-5 pt-5">
+        <h4 class="text-secondary mb-3">Rgister Here</h4>
+        <h1 class="display-4 m-0">Turf <span class="text-primary">Booking</span></h1>
+        {% for message in messages %}
+        <h6 style="color:red">{{message}}</h6>
+        {% endfor %}
+        <h6 style="color:red">{{form.errors}}</h6>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 mb-5">
+            <div class="contact-form text-center">
+                <div id="success"></div>
+                <form name="login" method = 'POST'>
+                    {% csrf_token %}
+                    
+                    {% for fields in form  %}
+                    <div class="control-group">
+                        {{fields.label}}: <br>
+                        {{fields}} <br><br>
+                    </div>
+                    {% endfor %}
+
+                    <div>
+                        <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Register</button>
+                    </div>
+                    <br>
+                    Have an account Click <a href="{%url 'signin' %}">Here</a> 
+                </form>
+            </div>
+        </div>
+
+
+{% endblock %}

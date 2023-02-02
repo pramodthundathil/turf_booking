@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="container-fluid pt-5">
+    <div class="d-flex flex-column text-center mb-5 pt-5">
+        <h4 class="text-secondary mb-3">Login To Continue....</h4>
+        <h1 class="display-4 m-0">Turf <span class="text-primary">Manager</span></h1>
+        {% for message in messages %}
+        <h6 style="color:red">{{message}}</h6>
+        {% endfor %}
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 mb-5">
+            <div class="contact-form">
+                <div id="success"></div>
+                <form name="login" action="{%url 'signin' %}" method = 'POST'>
+                    {% csrf_token %}
+                    <div class="control-group">
+                        <input type="text" class="form-control p-4" id="name" placeholder="User Name" required="required" name ='username' data-validation-required-message="Please enter username name" />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        <input type="password" class="form-control p-4" id="password" placeholder="Your Email" required="required" name = 'password' data-validation-required-message="Please enter your email" />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    
+                    <div>
+                        <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Login</button>
+                    </div>
+                    <br>
+                    dont have an account Create One Click <a href="{%url 'signup' %}">Here</a> 
+
+                </form>
+            </div>
+        </div>
+
+
+{% endblock %}

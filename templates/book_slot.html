@@ -1,0 +1,109 @@
+{% extends 'index.html' %}
+{% block content %}
+<style>
+    .itemscont {
+        background-color: rgb(0, 255, 85);
+        padding: 10px;
+        color: red;
+        font-weight: 900;
+    }
+
+    #slot {
+        display: none;
+    }
+</style>
+<div class="container-fluid pt-5">
+    <div class="d-flex flex-column text-center mb-5 pt-5">
+        <h4 class="text-secondary mb-3"></h4>
+        <h3 class="display-4 m-0"> Booking<span class="text-primary"></span></h3>
+    </div>
+    {% for message in messages %}
+    <h3 style='color:red'>{{message}}
+        <h3>
+            {% endfor %}
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 mb-5">
+                    <div class="contact-form">
+                        <div id="success"></div>
+                        <form action="{%url 'book_confirm' %}" method='POST'>
+                            {% csrf_token %}
+
+                            {%for i in turf%}
+
+                            <div class="control-group">
+                                <label for="subject">Turf Name</label>
+                                <input type="text" name='turf_name' value='{{i.Turf_name}}' class="form-control p-4"
+                                    id="subject" required="required"
+                                    data-validation-required-message="Please enter Turf name" readonly />
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="area">Turf Area</label>
+                                <input type="text" name='turf_area' value='{{i.Turf_area}}' class="form-control p-4"
+                                    id="area" required="required"
+                                    data-validation-required-message="Please enter Turf name" readonly />
+                                <p class="help-block text-danger"></p>
+                            </div> <br>
+                            <div class="control-group">
+                                <label for="catogary">Turf Catogary</label>
+                                <input type="text" name='turf_catogary' value='{{i.Turf_catogary}}'
+                                    class="form-control p-4" id="catogary" required="required"
+                                    data-validation-required-message="Please enter Turf name" readonly />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            {% endfor %}
+                            <div class="control-group" >
+                                <label for="customer_name">Enter Your Name</label>
+                                <input type="text" name='customer_name' class="form-control p-4" id="customer_name"
+                                    required="required" data-validation-required-message="Please enter your name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group">
+                                <label for="customer_mobile">Enter Your phone number</label>
+                                <input type="number" name='customer_mobile' class="form-control p-4"
+                                    id="customer_mobile" required="required"
+                                    data-validation-required-message="Please enter your mobile" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+
+                    </div><br>
+                    <!-- <div class="control-group">
+                        <label for="area">Select Time Slot</label>
+                        <select class="custom-select border-0 px-4" style="height: 47px;" name='time' id='area'>
+                            {% for j in slots %}
+                            <option value="{{j}}">{{j}}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div> <br> -->
+                    <div class="control-group">
+                        Select Time Slot: <br><br>
+                        <div class="row">
+                            {% for j in slots %}
+
+                            {% if j.Booking_status == False %}
+
+                            <div class="col-md-4">
+                                <div class="itemscont">
+                                    <input type="radio" name="timesloat" value="{{j.id}}" required> {{j.Date}}
+                                    {{j.TimeSlot}}
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% endfor %}
+                        </div>
+                        <br><br>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-primary py-3 px-5" type="submit" name='submit'
+                            value='{{i.Turf_id}}' id="sendMessageButton">Confirm Booking</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            
+            {% endblock %}

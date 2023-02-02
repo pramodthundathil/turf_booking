@@ -1,0 +1,45 @@
+{% extends 'turf_manager_home.html' %}
+
+{% block turf %}
+
+<br><br><br>
+<div class="container">
+    {% for message in messages  %}
+    <h4>{{message}}</h4>
+      
+    {% endfor %}
+    <div class="table-container">
+        <table class="table">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Turf</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            
+            {% for slot in slots  %}
+                
+                
+            <tr>
+                <td>{{slot.Date}}</td>
+                <td>{{slot.TimeSlot}}</td>
+                <td>{{slot.Turf}}</td>
+                
+                {% if slot.Booking_status == False %}
+                <td style="color:green">Avilable</td>
+                {% else %}
+                <td style="color:red">Booked</td>    
+                {% endif %}
+                    
+                <td><a href="{%url 'Deleteslot' slot.id %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

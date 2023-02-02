@@ -1,0 +1,53 @@
+{% extends 'turf_manager_home.html' %}
+
+{% block turf %}
+<!-- Blog Start -->
+<style>
+.formcontainer{
+    width:80%;
+    margin: auto;
+    background-color: whitesmoke;
+    padding: 30px;
+}
+</style>
+<div class="container">
+    <div class="d-flex flex-column text-center mb-5 pt-5">
+        <h4 class="text-secondary mb-3"></h4>
+        <h1 class="display-4 m-0"><span class="text-primary">Manage</span> Booking</h1>
+        
+        {% for message in messages  %}
+            <h6 style="color:red">{{message}}</h6>
+        {% endfor %}
+            
+    </div>
+    {% for message in messages %}
+    <h3 style="color: green;" align='center'> {{message}} </h3>
+    {% endfor %}
+
+    <div class="row">
+        {% for booking in bookings%}
+        <div class="col-md-4">
+            <div class="formcontainer">
+            <p><b>Customer Name: </b>{{booking.customer_name}}<br>
+                <b>Customer number: </b>{{booking.customer_phone}}<br>
+                <b>Booking Date: </b>{{booking.booking_date}}<br>
+                <b>Slot: </b>{{booking.slot}}<br>
+                {% if booking.paymet_status == True %}
+                  
+                <b>Payment Status:</b><h6 style="color:green">Completed</h6>
+                {% else %}
+                <b>Payment Status:</b><h6 style="color:hsl(4, 100%, 25%)">Pending</h6>
+                {% endif %}
+                 <br>
+                <b>Booking id: </b> {{booking.id}}<br>
+            </p>
+            <a class="btn btn-danger" href="{%url 'cancelbooking' booking.id %}">Cancel</a>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+        
+</div>
+
+
+{% endblock %}

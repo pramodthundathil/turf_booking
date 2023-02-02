@@ -1,0 +1,24 @@
+{% extends 'turf_manager_home.html' %}
+
+{% block turf %}
+<style>
+    .new a{
+        margin: 20px;
+        font-size: 30px;
+    }
+</style>
+
+{%for message in messages%}
+<div class="d-flex flex-column text-center mb-5 pt-5">
+    <h4 class="text-secondary mb-3">{{message}}</h4>
+</div>
+{%endfor%}
+<br><br><br>
+               <div class="container new text-center">
+                    <a href="{%url 'add_turf' %}" class="btn btn-success">Add Turf</a>
+                    <a href="{%url 'edit_turf'%}" class="btn btn-info">Edit Turf</a>
+                </div>
+
+       
+
+{% endblock %}
