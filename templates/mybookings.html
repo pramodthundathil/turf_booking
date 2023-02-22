@@ -10,6 +10,7 @@
         
     {% endfor %}
         
+    <h6>Upcomming Booking</h6>
 
     <table class="table table-striped bg-light">
         <tr>
@@ -20,6 +21,46 @@
         </tr>
         
         {% for item in booking %}  
+        <tr>
+            <td>{{item.slot.Turf}}</td>
+            <td>{{item.slot}}</td>
+            <td>{{item.booking_date}}</td>
+            <td><a href="{%url 'cancelbookinguser' item.id %}" class="btn btn-danger">Cancel</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <h6>Todays Bookings</h6>
+    <table class="table table-striped bg-light">
+        <tr>
+            <th>Turf Name</th>
+            <th>Time Slot</th>
+            <th>Booked Date</th>
+            <th>Action</th>
+        </tr>
+        
+        {% for item in today %}  
+        <tr>
+            <td>{{item.slot.Turf}}</td>
+            <td>{{item.slot}}</td>
+            <td>{{item.booking_date}}</td>
+            <td><a href="{%url 'cancelbookinguser' item.id %}" class="btn btn-danger">Cancel</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <h6>Previous Bookings</h6>
+    <table class="table table-striped bg-light">
+        <tr>
+            <th>Turf Name</th>
+            <th>Time Slot</th>
+            <th>Booked Date</th>
+            <th>Action</th>
+        </tr>
+        
+        {% for item in previous %}  
         <tr>
             <td>{{item.slot.Turf}}</td>
             <td>{{item.slot}}</td>

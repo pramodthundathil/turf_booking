@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.http import HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 
 razorpay_client = razorpay.Client(
@@ -170,8 +171,30 @@ def cancelbookinguser(request,pk):
 
 @login_required(login_url="signin")
 def MyBookings(request):
+    
+    dt = datetime.now()
+    print(dt)
+    dt = dt.date()
+    upcomming = []
+    previous = []
+    today = []
     booking = Booking_Confirmation.objects.filter(cutomer = request.user)
-    return render(request,"mybookings.html",{"booking":booking})
+    for i in booking:
+        timeslot = i.slot
+        if timeslot.Date > dt:
+            upcomming.append(i)
+        elif timeslot.Date == dt:
+            today.append(i)
+        elif  timeslot.Date < dt:
+            previous.append(i)
+        
+    context= {
+        "booking":upcomming,
+        "previous":previous,
+        'today':today
+    }
+    
+    return render(request,"mybookings.html",context)
 
 
 
