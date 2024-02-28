@@ -63,6 +63,13 @@ class Booking_Confirmation(models.Model):
      customer_name = models.CharField(max_length=200)
      customer_phone = models.CharField(max_length=200)
      paymet_status = models.BooleanField(default=False)
+
+
+class TurfBlogs(models.Model):
+     blog_title = models.CharField(max_length = 255 )
+     blog_text = models.CharField(max_length = 1000)
+     image = models.FileField(upload_to="blog_image")
+     date = models.DateTimeField(auto_now_add = True)
      
      
      

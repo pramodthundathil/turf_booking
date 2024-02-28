@@ -17,7 +17,11 @@ urlpatterns = [
     path('edit_turf',views.edit_turf,name= 'edit_turf'),
     path("AddTimeSlot",views.AddTimeSlot,name="AddTimeSlot"),
     path("SlotList",views.SlotList,name="SlotList"),
-    path("Deleteslot/<int:pk>",views.Deleteslot,name="Deleteslot")
+    path("Deleteslot/<int:pk>",views.Deleteslot,name="Deleteslot"),
+    path("AddBlog",views.AddBlog,name="AddBlog"),
+    path("deleteblog/<int:pk>",views.deleteblog,name="deleteblog"),
+
+
     
 ]
 

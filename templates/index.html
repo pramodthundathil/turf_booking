@@ -13,7 +13,8 @@
     <link href="{%static 'img/favicon.ico' %}" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -93,7 +94,8 @@
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
-                <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Open</span>Booking</h1>
+                <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span
+                        class="text-primary">Open</span>Booking</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -105,9 +107,8 @@
                     {% comment %} <a href="service.html" class="nav-item nav-link">Service</a> {% endcomment %}
                     {% comment %} <a href="price.html" class="nav-item nav-link">Price</a> {% endcomment %}
                     <a href="{%url 'booking' %}" class="nav-item nav-link">Book Truf</a>
-                    <a href="{%url 'MyBookings' %}"  class="nav-item nav-link">My Bookings</a>
+                    <a href="{%url 'MyBookings' %}" class="nav-item nav-link">My Bookings</a>
                     <div class="nav-item dropdown">
-                        {% comment %} <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a> {% endcomment %}
                         <div class="dropdown-menu rounded-0 m-0">
                             <a href="blog.html" class="dropdown-item">Blog Grid</a>
                             <a href="single.html" class="dropdown-item">Blog Detail</a>
@@ -115,7 +116,7 @@
                     </div>
                     <a href="{%url 'contact' %}" class="nav-item nav-link">Contact</a>
                 </div>
-                
+
                 {% if request.user.is_authenticated %}
 
                 <a href="#" class=" px-3 d-none d-lg-block">{{request.user.first_name}}</a>
@@ -125,10 +126,10 @@
                 <a href="{%url 'signin' %}" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</a>
                 <a href="{%url 'signup' %}" class="btn btn-lg btn-info px-3 d-none d-lg-block">Register</a>
                 {% endif %}
-                    
-                
 
-                
+
+
+
             </div>
         </nav>
     </div>
@@ -184,13 +185,23 @@
         <div class="row py-5">
             <div class="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
                 <h4 class="text-secondary mb-3">About Us</h4>
-                <h1 class="display-4 mb-4"><span class="text-primary">Synthetic Turf</span> & <span class="text-secondary">Traing center</span></h1>
-                <h5 class="text-muted mb-3">Amet stet amet ut. Sit no vero vero no dolor. Sed erat ut sea. Just clita ut stet kasd at diam sit erat vero sit.</h5>
-                <p class="mb-4">Dolores lorem lorem ipsum sit et ipsum. Sadip sea amet diam dolore sed et. Sit rebum labore sit sit ut vero no sit. Et elitr stet dolor sed sit et sed ipsum et kasd ut. Erat duo eos et erat sed diam duo</p>
+                <h1 class="display-4 mb-4"><span class="text-primary">Synthetic Turf</span> & <span
+                        class="text-secondary">Traing center</span></h1>
+                <h5 class="text-muted mb-3">Amet stet amet ut. Sit no vero vero no dolor. Sed erat ut sea. Just clita ut
+                    stet kasd at diam sit erat vero sit.</h5>
+                <p class="mb-4">Dolores lorem lorem ipsum sit et ipsum. Sadip sea amet diam dolore sed et. Sit rebum
+                    labore sit sit ut vero no sit. Et elitr stet dolor sed sit et sed ipsum et kasd ut. Erat duo eos et
+                    erat sed diam duo</p>
                 <ul class="list-inline">
-                    <li><h5><i class="fa fa-check-double text-secondary mr-3"></i>Best In City</h5></li>
-                    <li><h5><i class="fa fa-check-double text-secondary mr-3"></i>Emergency Services</h5></li>
-                    <li><h5><i class="fa fa-check-double text-secondary mr-3"></i>24/7 Customer Support</h5></li>
+                    <li>
+                        <h5><i class="fa fa-check-double text-secondary mr-3"></i>Best In City</h5>
+                    </li>
+                    <li>
+                        <h5><i class="fa fa-check-double text-secondary mr-3"></i>Emergency Services</h5>
+                    </li>
+                    <li>
+                        <h5><i class="fa fa-check-double text-secondary mr-3"></i>24/7 Customer Support</h5>
+                    </li>
                 </ul>
                 <a href="" class="btn btn-lg btn-primary mt-3 px-4">Learn More</a>
             </div>
@@ -211,17 +222,38 @@
     </div>
     <!-- About End -->
 
+    <div class="container">
+        <h2>Blog</h2>
+        <div class="row">
+            {% for i in blog %}
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.blog_title}}</h5>
+                        <p class="card-text">{{i.blog_text}}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
-    
-    
-{% endblock %}
-   
+
+
+
+    {% endblock %}
+
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-4 col-md-12 mb-5">
                 <h1 class="mb-3 display-5 text-capitalize text-white"><span class="text-primary">Book</span>Turf</h1>
-                <p class="m-0">Ipsum amet sed vero et lorem stet eos ut, labore sed sed stet sea est ipsum ut. Volup amet ea sanct ipsum, dolore vero lorem no duo eirmod. Eirmod amet ipsum no ipsum lorem clita ut. Ut sed sit lorem ea lorem sed, amet stet sit sea ea diam tempor kasd kasd. Diam nonumy etsit tempor ut sed diam sed et ea</p>
+                <p class="m-0">Ipsum amet sed vero et lorem stet eos ut, labore sed sed stet sea est ipsum ut. Volup
+                    amet ea sanct ipsum, dolore vero lorem no duo eirmod. Eirmod amet ipsum no ipsum lorem clita ut. Ut
+                    sed sit lorem ea lorem sed, amet stet sit sea ea diam tempor kasd kasd. Diam nonumy etsit tempor ut
+                    sed diam sed et ea</p>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
@@ -231,10 +263,14 @@
                         <p><i class="fa fa-phone-alt mr-2"></i>+91 9141109785</p>
                         <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
                         <div class="d-flex justify-content-start mt-4">
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                                style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
@@ -251,13 +287,16 @@
                         <h5 class="text-primary mb-4">Newsletter</h5>
                         <form action="">
                             <div class="form-group">
-                                <input type="text" class="form-control border-0" placeholder="Your Name" required="required" />
+                                <input type="text" class="form-control border-0" placeholder="Your Name"
+                                    required="required" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0" placeholder="Your Email" required="required" />
+                                <input type="email" class="form-control border-0" placeholder="Your Email"
+                                    required="required" />
                             </div>
                             <div>
-                                <button class="btn btn-lg btn-primary btn-block border-0" type="submit">Submit Now</button>
+                                <button class="btn btn-lg btn-primary btn-block border-0" type="submit">Submit
+                                    Now</button>
                             </div>
                         </form>
                     </div>
@@ -269,7 +308,8 @@
         <div class="row">
             <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
                 <p class="m-0 text-white">
-                    &copy; <a class="text-white font-weight-bold" href="#">Bookturf</a>. All Rights Reserved. Designed by
+                    &copy; <a class="text-white font-weight-bold" href="#">Bookturf</a>. All Rights Reserved. Designed
+                    by
                     <a class="text-white font-weight-bold" href="https://htmlcodex.com">Pramod</a>
                 </p>
             </div>

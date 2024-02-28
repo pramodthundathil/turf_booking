@@ -61,9 +61,8 @@
                             </div>
                             <div class="control-group">
                                 <label for="customer_mobile">Enter Your phone number</label>
-                                <input type="number" name='customer_mobile' class="form-control p-4"
-                                    id="customer_mobile" required="required"
-                                    data-validation-required-message="Please enter your mobile" />
+                                <input type="text" minlength="10" pattern="[0-9]{1}[0-9]{9}" title="Phone number with 0-9 and remaing 9 digit with 0-9"name='customer_mobile' class="form-control p-4"
+                                    id="customer_mobile" required data-validation-required-message="Please enter your mobile" />
                                 <p class="help-block text-danger"></p>
                             </div>
 

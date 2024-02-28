@@ -4,17 +4,23 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 from booking.models import TurfDetails,TimeSlot
-from booking.forms import TurfDetailsForm, TimeSlotForm
+from booking.forms import TurfDetailsForm, TimeSlotForm, BlogaddForm
 from .forms import UserAddForm
 from .decorators import admin_only
 from django.contrib.auth.decorators import login_required
+from booking.models import TurfBlogs
+
 
 
 # Create your views here.
 # index rendering....
 @admin_only
 def index(request):
-    return render (request,'index.html')
+    blog = TurfBlogs.objects.all()
+    context = {
+        "blog":blog
+    }
+    return render (request,'index.html',context)
 
 @login_required(login_url="signin")
 def manager_home(request):
@@ -70,6 +76,9 @@ def signin(request):
             request.session['password'] = password
             login(request, user1)
             return redirect('index')
+        else:
+            messages.info(request,"username or password incorrect")
+            return redirect("signin")
     
     return render(request, 'login.html')
 
@@ -140,4 +149,28 @@ def Deleteslot(request,pk):
     slot.delete()
     messages.info(request,"Slot deleted")
     return redirect("SlotList")
+
+def AddBlog(request):
+    form = BlogaddForm()
+    blog = TurfBlogs.objects.all()
+    if request.method == "POST":
+        form = BlogaddForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.info(request,"Blog Added list")
+            return redirect("AddBlog")
+
+    context = {
+        "form":form,
+        "blog":blog
+    }
+    return render(request,"blogadd.html",context)
+
+def deleteblog(request,pk):
+    TurfBlogs.objects.get(id = pk).delete()
+    messages.info(request,"Blog deleted.......")
+    return redirect("AddBlog")
+
+
+
 
